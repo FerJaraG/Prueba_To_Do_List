@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Imagen:</strong>
+  <%= image_tag @task.image %>
+</p>
+<br>
+<h5>Usuarios que han completado la Tarea:</h5>
+<table class="table table-hover">
+	<tr>
+		<th>Tarea</th>
+		<th>Usuario</th>
+	</tr>
+	<% @donetasks.each do |tarea| %>
+	<tr>
+		<% if tarea.task.id == @task.id and tarea.done == true %>
+			<td><%= tarea.task.title %></td>
+			<td><%= tarea.user.email %></td>
+		<% end  %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<h5>Top 5 Usuarios que han completado la Tarea:</h5>
+<table class="table table-hover">
+	<tr>
+		<th>Tarea</th>
+		<th>Usuario</th>
+	</tr>
+	<% @donetasks.each do |tarea| %>
+	<tr>
+		<% if tarea.task.id == @task.id and tarea.done == true %>
+			<td><%= ranking %></td>
+			<td><%= tarea.user.email %></td>
+		<% end  %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+
+<%= link_to 'Back', tasks_path %>
